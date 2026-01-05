@@ -28,3 +28,35 @@ export function calculateMortgage(purchasePrice, downPayment, loanTerm, interest
 
     return mortgagePayment;
 }
+
+// calculate NOI
+// requires monthly rental income, monthly operating expenses
+export function calculateNOI(monthlyRentalIncome, monthlyOperatingExpenses) {
+    let annualRentalIncome = monthlyRentalIncome * 12;
+    let annualOperatingExpenses = monthlyOperatingExpenses * 12;
+
+    return annualRentalIncome - annualOperatingExpenses;
+}
+
+// calculate cap rate
+// requires NOI, purchase price
+export function calculateCapRate(noi, purchasePrice) {
+    return noi / purchasePrice;
+}
+
+// calculate monthly cash flow
+// requires monthly rental income, monthly operating expenses, monthly mortgage payment
+export function calculateCashFlow(monthlyRentalIncome, monthlyOperatingExpenses, monthlyMortgage) {
+    return monthlyRentalIncome - monthlyOperatingExpenses - monthlyMortgage;
+}
+
+
+// calculate cash on cash return
+// requires cash flow, down payment, closing costs, rehab budget
+export function calculateCocReturn(cashFlow, downPayment, closingCosts, rehabBudget) {
+    let totalCashInvestment = downPayment + closingCosts + rehabBudget;
+    let annualCashFlow = cashFlow * 12;
+
+
+    return annualCashFlow / totalCashInvestment;
+}
